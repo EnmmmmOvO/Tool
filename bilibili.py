@@ -11,7 +11,7 @@ import imghdr
 
 UID = 370770288 # 你的UID
 ACCESS_KEY = "8542f5a8dbfb33c049d638fafaaeab11"  # 你的ACCESS_KEY (TV端,非TV端自行更换下面的APPKEY,APPSECRET,TV端access_key获取工具 https://github.com/XiaoMiku01/fansMedalHelper/releases/tag/logintool)
-FACE_PATH = r"IMG_0879.jpeg"  # 头像路径 推荐正方形
+FACE_PATH = r"/Users/enmmmmovo/Desktop/IMG_0904.JPG"  # 头像路径 推荐正方形
 
 CARD_INFO_PATH = Path(__file__).parent / "bili.json"  # 不要动
 
