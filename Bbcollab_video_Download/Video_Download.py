@@ -10,6 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.edge.service import Service as EdgeService
 from tqdm import tqdm
 from webdriver_manager.chrome import ChromeDriverManager
@@ -25,8 +26,11 @@ def url_explanation(url):
     try:
         options = Options()
         options.add_argument('--headless')
-        driver = webdriver.Chrome(service=ChromeService(executable_path=ChromeDriverManager().install()),
-                                  chrome_options=options)
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
+
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=options)
     except selenium.common.exceptions.WebDriverException:
         try:
             driver = webdriver.Edge(service=EdgeService(executable_path=EdgeChromiumDriverManager().install()))
@@ -35,7 +39,6 @@ def url_explanation(url):
             exit(1)
 
     driver.get(url)
-    video_url = str()
 
     try:
         WebDriverWait(driver, 15).until(EC.url_changes(url))
